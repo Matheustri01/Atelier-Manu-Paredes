@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atelier Manu Paredes — Poesia Costurada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500&family=Italiana&family=Manrope:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1410;
+  --gold: #c9a050;
+  --paper: #f4ece3;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Manrope', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #1a1410;
+}
+
+/* ── HERO COMPLETO ── */
+.splash {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Imagem de fundo com Ken Burns effect sutil */
+.splash-image {
+  position: absolute;
+  inset: 0;
+  background-image: url('imagens/manu-hero.jpeg');
+  background-size: cover;
+  background-position: center 30%;
+  animation: kenBurns 24s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+@keyframes kenBurns {
+  0%   { transform: scale(1.02) translate(0, 0); }
+  100% { transform: scale(1.08) translate(-1%, -1%); }
+}
+
+/* Vinheta escura sutil para leitura do logo */
+.splash::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    radial-gradient(ellipse at center, rgba(26,20,16,0.0) 30%, rgba(26,20,16,0.35) 100%),
+    linear-gradient(to bottom, rgba(26,20,16,0.25) 0%, rgba(26,20,16,0) 30%, rgba(26,20,16,0) 70%, rgba(26,20,16,0.5) 100%);
+  pointer-events: none;
+}
+
+/* Grão sutil sobre a imagem */
+.splash::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+/* ── TOP BAR ── */
+.top-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  padding: 32px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn 1.6s ease 0.3s forwards;
+}
+
+.top-meta {
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(244,236,227,0.85);
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.top-meta .dot {
+  width: 5px; height: 5px;
+  background: var(--gold);
+  border-radius: 50%;
+}
+
+/* ── LOGO CENTRAL ── */
+.splash-content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+}
+
+/* Linha decorativa superior */
+.deco-top {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 36px;
+  opacity: 0;
+  animation: fadeUp 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 0.6s forwards;
+}
+.deco-top .line {
+  width: 56px; height: 1px;
+  background: rgba(244,236,227,0.7);
+}
+.deco-top .star {
+  color: var(--gold);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+}
+.deco-top .label {
+  font-family: 'Manrope', sans-serif;
+  font-size: 10px;
+  letter-spacing: 0.5em;
+  text-transform: uppercase;
+  color: rgba(244,236,227,0.85);
+}
+
+/* Logo principal */
+.logo-mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  text-shadow: 0 2px 30px rgba(0,0,0,0.4);
+}
+
+.logo-script {
+  font-family: 'Italiana', serif;
+  font-size: clamp(28px, 4vw, 56px);
+  letter-spacing: 0.2em;
+  margin-bottom: 8px;
+  font-weight: 400;
+  text-transform: uppercase;
+  opacity: 0;
+  animation: fadeUp 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.9s forwards;
+}
+
+.logo-name {
+  font-family: 'Italiana', serif;
+  font-size: clamp(64px, 11vw, 168px);
+  line-height: 0.9;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 400;
+  opacity: 0;
+  animation: fadeUp 1.8s cubic-bezier(0.2, 0.8, 0.2, 1) 1.1s forwards;
+}
+.logo-name .ampersand {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--gold);
+  display: inline-block;
+  transform: translateY(-0.05em);
+  margin: 0 0.04em;
+}
+
+.logo-tag {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(16px, 1.8vw, 22px);
+  letter-spacing: 0.04em;
+  margin-top: 16px;
+  color: rgba(244,236,227,0.92);
+  opacity: 0;
+  animation: fadeUp 1.6s cubic-bezier(0.2, 0.8, 0.2, 1) 1.4s forwards;
+}
+
+/* Linha decorativa inferior */
+.deco-bottom {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 40px;
+  opacity: 0;
+  animation: fadeUp 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1.6s forwards;
+}
+.deco-bottom .line {
+  width: 80px; height: 1px;
+  background: rgba(244,236,227,0.5);
+}
+.deco-bottom .star { color: var(--gold); font-size: 9px; }
+
+/* ── CTA / ENTER ── */
+.enter-btn {
+  margin-top: 64px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 44px;
+  background: rgba(244,236,227,0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(244,236,227,0.4);
+  color: #fff;
+  font-family: 'Manrope', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 0;
+  animation: fadeUp 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) 1.9s forwards;
+  position: relative;
+  overflow: hidden;
+}
+.enter-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--paper);
+  transform: translateX(-101%);
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.enter-btn span,
+.enter-btn svg {
+  position: relative;
+  z-index: 2;
+  transition: color 0.4s, transform 0.4s;
+}
+.enter-btn:hover::before { transform: translateX(0); }
+.enter-btn:hover { border-color: var(--paper); }
+.enter-btn:hover span,
+.enter-btn:hover svg { color: var(--ink); }
+.enter-btn:hover svg { transform: translateX(4px); }
+
+/* ── BOTTOM BAR ── */
+.bottom-bar {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 10;
+  padding: 28px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0;
+  animation: fadeIn 1.6s ease 2.2s forwards;
+}
+
+.bottom-meta {
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(244,236,227,0.7);
+}
+
+.bottom-collection {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(244,236,227,0.85);
+  letter-spacing: 0.05em;
+}
+.bottom-collection .em {
+  color: var(--gold);
+  font-weight: 400;
+}
+
+/* Scroll hint */
+.scroll-hint {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 8;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: rgba(244,236,227,0.6);
+  opacity: 0;
+  animation: fadeIn 1.4s ease 2.5s forwards, bob 2.6s ease-in-out 3.5s infinite;
+}
+.scroll-hint .scroll-label {
+  font-size: 9px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+}
+.scroll-hint .scroll-line {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, transparent, rgba(244,236,227,0.6));
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeIn { to { opacity: 1; } }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes bob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%      { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .top-bar, .bottom-bar { padding: 20px 24px; }
+  .top-meta:nth-child(2) { display: none; }
+  .splash-image { background-position: center 40%; }
+  .deco-top .line, .deco-bottom .line { width: 32px; }
+  .deco-top .label { font-size: 9px; letter-spacing: 0.32em; }
+  .enter-btn { padding: 16px 32px; font-size: 10px; }
+  .scroll-hint { bottom: 70px; }
+  .bottom-collection { display: none; }
+}
+
+@media (max-width: 480px) {
+  .splash-content { padding: 24px; }
+  .deco-top { margin-bottom: 24px; }
+  .deco-bottom { margin-top: 28px; }
+  .enter-btn { margin-top: 40px; }
+}
+</style>
+</head>
+<body>
+
+<div class="splash">
+
+  <!-- Imagem de fundo -->
+  <div class="splash-image" role="img" aria-label="Editorial Atelier Manu Paredes — coleção Poesia Costurada"></div>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="top-meta">
+      <span class="dot"></span>
+      <span>Atelier · Curitiba</span>
+    </div>
+    <div class="top-meta">
+      <span>Coleção 2025 / Edição I</span>
+      <span class="dot"></span>
+    </div>
+  </div>
+
+  <!-- Logo central -->
+  <div class="splash-content">
+
+    <div class="deco-top">
+      <span class="line"></span>
+      <span class="star">✦</span>
+      <span class="label">Poesia Costurada</span>
+      <span class="star">✦</span>
+      <span class="line"></span>
+    </div>
+
+    <div class="logo-mark">
+      <div class="logo-script">Atelier</div>
+      <div class="logo-name">Manu<span class="ampersand">&amp;</span>Paredes</div>
+      <div class="logo-tag">Moda festa autoral · feita à mão</div>
+    </div>
+
+    <div class="deco-bottom">
+      <span class="line"></span>
+      <span class="star">✦</span>
+      <span class="line"></span>
+    </div>
+
+    <a href="index.html" class="enter-btn">
+      <span>Entrar no atelier</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"/>
+        <polyline points="12 5 19 12 12 19"/>
+      </svg>
+    </a>
+  </div>
+
+  <!-- Scroll hint -->
+  <div class="scroll-hint">
+    <span class="scroll-label">Descubra</span>
+    <span class="scroll-line"></span>
+  </div>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">
+    <div class="bottom-meta">© 2026 Manu Paredes</div>
+    <div class="bottom-collection">
+      <span class="em">N° 01</span> &nbsp;·&nbsp; <em>Poesia Costurada</em> &nbsp;·&nbsp; Setembro 2025
+    </div>
+    <div class="bottom-meta">@ateliermanuparedes</div>
+  </div>
+
+</div>
+
+</body>
+</html>
